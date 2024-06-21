@@ -5,7 +5,7 @@ function Alert(props) {
 
   const capitalised = (word) => {
     if (word === "danger") {
-      word = "error"
+      word = " "
     }
     let cap = word.charAt(0).toUpperCase();
     return cap + word.slice(1);
