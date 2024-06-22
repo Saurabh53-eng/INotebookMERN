@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 const NoteState = (props) => {
   const notesInitial = []
-  const host = "http://localhost:8080"
+  const host = "https://inotebookbackend-5wps.onrender.com/"
   const [notes, setnotes] = useState(notesInitial);
 
   //get all notes
