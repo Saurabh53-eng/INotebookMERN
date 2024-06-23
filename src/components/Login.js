@@ -5,6 +5,7 @@ function Login(props) {
 
     const [credentials, setCredentials] = useState({ email: "", password: "", showPassword: false });
     const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     let history = useNavigate();
 
     const onchange = (e) => {
@@ -20,26 +21,25 @@ function Login(props) {
     }
 
     const handleClick = async () => {
-        const response = await fetch("https://inotebookbackend-5wps.onrender.com/api/auth/login", {
+
+        const response = await fetch("http://localhost:8080/api/auth/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ email: credentials.email, password: credentials.password })
-
         });
+        setIsLoading(true);
         const json = await response.json();
-        if (credentials.password === " ")
-            props.showAlert("password cannot be blank", "danger");
-
-        else if (json.success) {
+        if (json.success) {
             localStorage.setItem('token', json.authtoken)
+            setIsLoading(false);
             history("/")
             props.showAlert("Logged in successfully", "success")
         } else {
+            setIsLoading(false);
             props.showAlert("invalid credentials", "danger")
         }
-
     }
 
     return (
@@ -47,6 +47,7 @@ function Login(props) {
             <div className='text-center mt-5 mb-4'>
                 <h1>INotebook</h1>
                 <p><b>Your notes on cloud ☁️</b></p>
+                {isLoading ? <h3>Please wait ....</h3> : null}
             </div>
 
             <div className="container form">
@@ -66,9 +67,12 @@ function Login(props) {
             </div>
             <div className='text-center'>
                 <button className='btn btn-primary' onClick={handleClick}>Login</button>
+
             </div>
+            {/* <p className='text-center'><Link to="/signup">Forgot Password</Link> </p> */}
             <br />
-            <p className='text-center last-para'>Don't have an account? <Link to="/signup">SignUp-&gt;</Link> </p>
+
+            <p className='text-center last-para'>Don't have an account? <Link to="/ForgotPassword">SignUp-&gt;</Link> </p>
         </div>
     )
 }

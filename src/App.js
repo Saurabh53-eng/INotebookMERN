@@ -9,6 +9,9 @@ import Alert from './components/Alert';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import SignUp from './components/Signup';
+// import forgotPassword from './components/forgotPassword';
+
+// import EmailVerify from './components/EmailVerify/EmailVerify.jsx';
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -36,6 +39,9 @@ function App() {
               <Route path="/about" element={<About showAlert={showAlert} />} />
               <Route path="/login" element={<Login showAlert={showAlert} />} />
               <Route path="/signup" element={<SignUp showAlert={showAlert} />} />
+              {/* <Route path="/ForgotPassword" element={<forgotPassword showAlert={showAlert} />} /> */}
+              {/* <Route path="/users/:id/verify/:token" element={<EmailVerify showAlert={showAlert} />} /> */}
+
             </Routes>
           </div>
         </BrowserRouter>

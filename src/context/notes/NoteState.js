@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 const NoteState = (props) => {
   const notesInitial = []
-  const host = "https://inotebookbackend-5wps.onrender.com"
+  const host = "http://localhost:8080"
   const [notes, setnotes] = useState(notesInitial);
 
   //get all notes
@@ -15,7 +15,6 @@ const NoteState = (props) => {
         'Content-Type': 'application/json',
         'auth-token': localStorage.getItem('token')
       },
-
     });
 
     const json = await response.json();

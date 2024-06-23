@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 function SignUp(props) {
     <Navbar />
     const [credentials, setCredentials] = useState({ email: "", name: "", password: "", cpassword: "", showPassword: false, showConfirmPassword: false });
-
+    const [isLoading, setIsLoading] = useState(false);
     let history = useNavigate();
 
     const onchange = (e) => {
@@ -27,7 +27,8 @@ function SignUp(props) {
     }
     const handleClick = async (e) => {
         e.preventDefault();
-        const response = await fetch("https://inotebookbackend-5wps.onrender.com/api/auth/createuser", {
+        setIsLoading(true);
+        const response = await fetch("http://localhost:8080/api/auth/createuser", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,12 +38,17 @@ function SignUp(props) {
         const json = await response.json();
         if (credentials.password !== credentials.cpassword) {
             props.showAlert("Password did not match ", "danger");
+            setIsLoading(false);
         } else if (json.success) {
+            setIsLoading(false);
             localStorage.setItem('token', json.authtoken)
             history("/")
             props.showAlert("Account created successfully", "success")
-        } else
+        } else {
+            setIsLoading(false);
             props.showAlert("Invalid Credentials", "danger");
+        }
+
     }
 
     return (
@@ -51,6 +57,7 @@ function SignUp(props) {
                 <h1>INotebook</h1>
                 <p>Please wait some time for SignUp process</p>
                 <p><b>Your notes on cloud ☁️</b></p>
+                {isLoading ? <h3>Please wait ....</h3> : null}
             </div>
             <form>
                 <div className="container form">
