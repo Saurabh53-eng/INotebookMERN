@@ -22,7 +22,7 @@ function Login(props) {
 
     const handleClick = async () => {
 
-        const response = await fetch("http://localhost:8080/api/auth/login", {
+        const response = await fetch("https://i-notebook-backend-five.vercel.app", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
