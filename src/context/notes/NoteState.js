@@ -10,6 +10,7 @@ const NoteState = (props) => {
   //get all notes
   const getNote = async () => {
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+      mode:"cors",
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
