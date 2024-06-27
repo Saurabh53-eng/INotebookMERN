@@ -22,7 +22,7 @@ function Login(props) {
 
     const handleClick = async () => {
 
-        const response = await fetch("https://i-notebook-backend-five.vercel.app", {
+        const response = await fetch("https://inotebookbackend-5wps.onrender.com", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
