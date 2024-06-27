@@ -22,7 +22,7 @@ function Login(props) {
 
     const handleClick = async () => {
 
-        const response = await fetch("https://inotebookbackend-5wps.onrender.com", {
+        const response = await fetch("https://inotebookbackend-5wps.onrender.com/api/auth/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

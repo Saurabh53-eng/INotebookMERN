@@ -28,7 +28,7 @@ function SignUp(props) {
     const handleClick = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-        const response = await fetch("https://inotebookbackend-5wps.onrender.com", {
+        const response = await fetch("https://inotebookbackend-5wps.onrender.com/api/auth/createuser", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
