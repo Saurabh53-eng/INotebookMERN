@@ -72,7 +72,7 @@ function Login(props) {
             {/* <p className='text-center'><Link to="/signup">Forgot Password</Link> </p> */}
             <br />
 
-            <p className='text-center last-para'>Don't have an account? <Link to="/ForgotPassword">SignUp-&gt;</Link> </p>
+            <p className='text-center last-para'>Don't have an account? <Link to="/Signup">SignUp-&gt;</Link> </p>
         </div>
     )
 }
