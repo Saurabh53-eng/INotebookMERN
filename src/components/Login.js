@@ -6,6 +6,7 @@ function Login(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "", showPassword: false });
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     let history = useNavigate();
 
     const onchange = (e) => {
@@ -21,7 +22,7 @@ function Login(props) {
     }
 
     const handleClick = async () => {
-
+    setIsLoading(true);
         const response = await fetch("https://inotebookbackend-5wps.onrender.com/api/auth/login", {
             method: 'POST',
             headers: {
@@ -32,11 +33,13 @@ function Login(props) {
         setIsLoading(true);
         const json = await response.json();
         if (json.success) {
+                setIsLoading(false);
             localStorage.setItem('token', json.authtoken)
             setIsLoading(false);
             history("/")
             props.showAlert("Logged in successfully", "success")
         } else {
+                setIsLoading(false);
             setIsLoading(false);
             props.showAlert("invalid credentials", "danger")
         }
@@ -45,6 +48,7 @@ function Login(props) {
     return (
         <div>
             <div className='text-center mt-5 mb-4'>
+        {isLoading ? <h3>trying connect to server please wait...</h3> : null}
                 <h1>INotebook</h1>
                 <p><b>Your notes on cloud ☁️</b></p>
                 {isLoading ? <h3>Please wait ....</h3> : null}
