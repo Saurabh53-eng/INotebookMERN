@@ -5,7 +5,7 @@ function Login(props) {
 
     const [credentials, setCredentials] = useState({ email: "", password: "", showPassword: false });
     const [errors, setErrors] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
+   
     const [isLoading, setIsLoading] = useState(false);
     let history = useNavigate();
 
@@ -30,17 +30,17 @@ function Login(props) {
             },
             body: JSON.stringify({ email: credentials.email, password: credentials.password })
         });
-        setIsLoading(true);
+      
         const json = await response.json();
         if (json.success) {
                 setIsLoading(false);
             localStorage.setItem('token', json.authtoken)
-            setIsLoading(false);
+           
             history("/")
             props.showAlert("Logged in successfully", "success")
         } else {
                 setIsLoading(false);
-            setIsLoading(false);
+        
             props.showAlert("invalid credentials", "danger")
         }
     }
@@ -51,7 +51,7 @@ function Login(props) {
         {isLoading ? <h3>trying connect to server please wait...</h3> : null}
                 <h1>INotebook</h1>
                 <p><b>Your notes on cloud ☁️</b></p>
-                {isLoading ? <h3>Please wait ....</h3> : null}
+               
             </div>
 
             <div className="container form">
