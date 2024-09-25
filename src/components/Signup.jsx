@@ -55,7 +55,7 @@ function SignUp(props) {
         <>
             <div className='text-center mb-3'>
                 <h1>INotebook</h1>
-                <p>Please wait some time for SignUp process</p>
+               
                 <p><b>Your notes on cloud ☁️</b></p>
                 {isLoading ? <h3>Please wait ....</h3> : null}
             </div>
